@@ -19,13 +19,21 @@ class Board implements Ilayout, Cloneable {
     }
 
     public String toString() {
-        // To be completed
-        return null;
+        String result = "";
+        for(int i = 0; i < dim; i++) {
+            for(int j = 0; j < dim; j++) {
+                if(this.board[i][j] == 0)
+                    result += " ";
+                else result += this.board[i][j];
+            }
+            result += "\n";
+        }
+        return result;
     }
 
     @Override
     public List<Ilayout> children() {
-        List<Ilayout> result = new ArrayList<>();
+        List<Ilayout> result = new ArrayList<Ilayout>();
         
     }
 
