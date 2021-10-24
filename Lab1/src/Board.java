@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 
 class Board implements Ilayout, Cloneable {
     private static final int dim=3;
@@ -25,14 +25,27 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public List<Ilayout> children() {
-        // TODO Auto-generated method stub
-        return null;
+        List<Ilayout> result = new ArrayList<>();
+        
     }
 
     @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Board b = (Board) o;
+            for(int i = 0; i < dim; i++) {
+                for(int j = 0; j < dim; j++) {
+                    if(b.board[i][j] != this.board[i][j])
+                        return false;
+                }
+            }
+            return true;
+        }
+
+    @Override
     public boolean isGoal(Ilayout l) {
-        // TODO Auto-generated method stub
-        return false;
+        return this.equals(l);
     }
 
     @Override
