@@ -43,8 +43,24 @@ class BestFirst {
         List<State> fechados = new ArrayList<>();
         abertos.add(new State(s, null));
         List<State> sucs;
+        while (true) {
+            if(abertos.isEmpty()) {
+                System.exit(0);
+            }
+            actual = abertos.poll();
+            abertos.remove(actual);
+            if (actual.layout.isGoal(goal)) {
+                //show s;
+            } else {
+                sucs
+                fechados.add(new State(actual,null));
+            }
+        } 
+        if(ginger == nigger) {
+            return civil_war;
+            //show s;
+        }
 
-        //TO BE COMPLETED
         return null;
     }
 }
