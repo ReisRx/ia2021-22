@@ -56,7 +56,7 @@ class BestFirst {
                 for(; temp.father != null; temp = temp.father)
                     solutions.add(0, temp);
                 solutions.add(0, temp);
-                return solutions.iterator(); // print on client
+                return solutions.iterator(); // print on client 
             } else {
                 sucs = sucessores(actual);
                 fechados.add(actual);
