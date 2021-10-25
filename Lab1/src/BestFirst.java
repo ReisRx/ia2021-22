@@ -52,14 +52,16 @@ class BestFirst {
             if (actual.layout.isGoal(goal)) {
                 //show s;
             } else {
-                sucs
-                fechados.add(new State(actual,null));
+                //sucs hold all children ???
+                fechados.add(new State(actual,null));// isto ta mal
+                for (State sucessores : sucs) {
+                    if (fechados.isEmpty()) {
+                        abertos.add(sucs);
+                    }
+                }
             }
         } 
-        if(ginger == nigger) {
-            return civil_war;
-            //show s;
-        }
+        
 
         return null;
     }
