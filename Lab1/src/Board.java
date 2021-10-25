@@ -75,6 +75,7 @@ class Board implements Ilayout, Cloneable {
         if(coords[1] + 1 <= 3)
             moveNumbers(coords, coords[0], coords[1]+1);
 
+        // TO BE COMPLETED
         return result;
     }
 
