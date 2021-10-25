@@ -14,7 +14,7 @@ public class Main {
                     BestFirst.State i = it.next();
                     System.out.println(i);
                     if (!it.hasNext())
-                        System.out.println(i.getG());
+                        System.out.println(String.format("%.0f", i.getG()));
                 }
             }
             sc.close();

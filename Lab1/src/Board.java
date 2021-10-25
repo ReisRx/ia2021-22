@@ -28,6 +28,7 @@ class Board implements Ilayout, Cloneable {
     }
 
     public Board(Board b) {
+        this.board = new int[dim][dim];
         for(int i = 0; i < dim; i++) {
             for(int j = 0; j < dim; j++) {
                 this.board[i][j] = b.board[i][j];
@@ -71,7 +72,7 @@ class Board implements Ilayout, Cloneable {
             newBoard.board = moveNumbers(newBoard, modX, modY, 0, -1);
             result.add(newBoard);
         }
-        if(modY + 1 <= 3) {
+        if(modY + 1 <= 2) {
             newBoard = new Board(this);
             newBoard.board = moveNumbers(newBoard, modX, modY, 0, 1);
             result.add(newBoard);
@@ -81,7 +82,7 @@ class Board implements Ilayout, Cloneable {
             newBoard.board = moveNumbers(newBoard, modX, modY, -1, 0);
             result.add(newBoard);
         }
-        if(modX + 1 <= 3) {
+        if(modX + 1 <= 2) {
             newBoard = new Board(this);
             newBoard.board = moveNumbers(newBoard, modX, modY, 1, 0);
             result.add(newBoard);
