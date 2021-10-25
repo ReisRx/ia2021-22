@@ -43,26 +43,28 @@ class BestFirst {
         List<State> fechados = new ArrayList<>();
         abertos.add(new State(s, null));
         List<State> sucs;
+
         while (true) {
             if(abertos.isEmpty()) {
                 System.exit(0);
             }
             actual = abertos.poll();
-            abertos.remove(actual);
+            // abertos.remove(actual);
             if (actual.layout.isGoal(goal)) {
-                //show s;
+                List<State> solutions = new ArrayList<>();
+                State temp = actual;
+                for(; temp.father != null; temp = temp.father)
+                    solutions.add(0, temp);
+                solutions.add(0, temp);
+                return solutions.iterator(); // print on client
             } else {
-                //sucs hold all children ???
-                fechados.add(new State(actual,null));// isto ta mal
-                for (State sucessores : sucs) {
-                    if (fechados.isEmpty()) {
-                        abertos.add(sucs);
-                    }
+                sucs = sucessores(actual);
+                fechados.add(actual);
+                for (State sucessor : sucs) {
+                    if (!fechados.contains(sucessor))
+                        abertos.add(sucessor);
                 }
             }
-        } 
-        
-
-        return null;
+        }
     }
 }
