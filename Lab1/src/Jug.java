@@ -3,6 +3,9 @@ import java.util.*;
 class Jug implements Ilayout {
     private int[] jugs;
     private static final int dim = 3;
+    private static final int lim0 = 8;
+    private static final int lim1 = 5;
+    private static final int lim2 = 3;
 
     public Jug() {
         jugs = new int[dim];
@@ -27,8 +30,59 @@ class Jug implements Ilayout {
             if(i != dim-1)
                 result += " ";
         }
-        result += "\n";
         return result;
+    }
+
+    private int[] moveWater(Jug newJug, int i, int j) {
+        int counter = 0;
+        
+        switch (j) {
+            case 0:
+                if(newJug.jugs[j] < lim0) {
+                    counter = lim0 - newJug.jugs[j];
+                    if(newJug.jugs[i] > counter) {
+                        newJug.jugs[j] += counter;
+                        newJug.jugs[i] -= counter;
+                    }
+                    else {
+                        counter = newJug.jugs[i];
+                        newJug.jugs[j] += counter;
+                        newJug.jugs[i] -= counter;
+                    }
+                }
+                break;
+        
+            case 1:
+            if(newJug.jugs[j] < lim1) {
+                counter = lim1 - newJug.jugs[j];
+                if(newJug.jugs[i] > counter) {
+                    newJug.jugs[j] += counter;
+                    newJug.jugs[i] -= counter;
+                }
+                else {
+                    counter = newJug.jugs[i];
+                    newJug.jugs[j] += counter;
+                    newJug.jugs[i] -= counter;
+                }
+            }
+                break;
+            
+            case 2:
+            if(newJug.jugs[j] < lim2) {
+                counter = lim2 - newJug.jugs[j];
+                if(newJug.jugs[i] > counter) {
+                    newJug.jugs[j] += counter;
+                    newJug.jugs[i] -= counter;
+                }
+                else {
+                    counter = newJug.jugs[i];
+                    newJug.jugs[j] += counter;
+                    newJug.jugs[i] -= counter;
+                }
+            }
+                break;
+        }
+        return newJug.jugs;
     }
 
     @Override
@@ -36,8 +90,16 @@ class Jug implements Ilayout {
         List<Ilayout> result = new ArrayList<>();
         Jug newJug;
 
-        // Implement for() for all children
-
+        for(int i = 0; i < dim; i++) {
+            for(int j = 0; j < dim; j++) {
+                newJug = new Jug(this);
+                if(i != j && newJug.jugs[i] != 0) {
+                    moveWater(newJug, i, j);
+                    if(!Arrays.equals(this.jugs, newJug.jugs))
+                        result.add(newJug);
+                }
+            }
+        }
         return result;
     }
 
