@@ -5,10 +5,6 @@ class Jug implements Ilayout {
     private int[] jugsLimit;
     private int dim = 3;
 
-    private static final int lim0 = 8;
-    private static final int lim1 = 5;
-    private static final int lim2 = 3;
-
     public Jug() {
         this.jugs = new int[dim];
         this.jugsLimit = new int [dim];
@@ -58,7 +54,7 @@ class Jug implements Ilayout {
                 newJug.jugs[i] -= counter;
             }
         }
-        
+
         return newJug.jugs;
     }
 
