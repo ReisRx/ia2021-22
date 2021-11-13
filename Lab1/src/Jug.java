@@ -2,25 +2,35 @@ import java.util.*;
 
 class Jug implements Ilayout {
     private int[] jugs;
-    private static final int dim = 3;
+    private int[] jugsLimit;
+    private int dim = 3;
+
     private static final int lim0 = 8;
     private static final int lim1 = 5;
     private static final int lim2 = 3;
 
     public Jug() {
-        jugs = new int[dim];
+        this.jugs = new int[dim];
+        this.jugsLimit = new int [dim];
     }
 
-    public Jug(int[] j) {
+    public Jug(int[] j, int[] limits, int size) {
+        this.dim = size;
         this.jugs = new int[dim];
-        for(int i = 0; i < dim; i++)
+        this.jugsLimit = new int [dim];
+        for(int i = 0; i < dim; i++) {
             this.jugs[i] = j[i];
+            this.jugsLimit[i] = limits[i];
+        }
     }
 
     public Jug(Jug b) {
         this.jugs = new int[dim];
-        for(int i = 0; i < dim; i++)
-                this.jugs[i] = b.jugs[i];
+        this.jugsLimit = new int [dim];
+        for(int i = 0; i < dim; i++) {
+            this.jugs[i] = b.jugs[i];
+            this.jugsLimit[i] = b.jugsLimit[i];
+        }
     }
 
     public String toString() {
@@ -35,53 +45,20 @@ class Jug implements Ilayout {
 
     private int[] moveWater(Jug newJug, int i, int j) {
         int counter = 0;
-        
-        switch (j) {
-            case 0:
-                if(newJug.jugs[j] < lim0) {
-                    counter = lim0 - newJug.jugs[j];
-                    if(newJug.jugs[i] > counter) {
-                        newJug.jugs[j] += counter;
-                        newJug.jugs[i] -= counter;
-                    }
-                    else {
-                        counter = newJug.jugs[i];
-                        newJug.jugs[j] += counter;
-                        newJug.jugs[i] -= counter;
-                    }
-                }
-                break;
-        
-            case 1:
-            if(newJug.jugs[j] < lim1) {
-                counter = lim1 - newJug.jugs[j];
-                if(newJug.jugs[i] > counter) {
-                    newJug.jugs[j] += counter;
-                    newJug.jugs[i] -= counter;
-                }
-                else {
-                    counter = newJug.jugs[i];
-                    newJug.jugs[j] += counter;
-                    newJug.jugs[i] -= counter;
-                }
+
+        if(newJug.jugs[j] < this.jugsLimit[j]) {
+            counter = this.jugsLimit[j] - newJug.jugs[j];
+            if(newJug.jugs[i] > counter) {
+                newJug.jugs[j] += counter;
+                newJug.jugs[i] -= counter;
             }
-                break;
-            
-            case 2:
-            if(newJug.jugs[j] < lim2) {
-                counter = lim2 - newJug.jugs[j];
-                if(newJug.jugs[i] > counter) {
-                    newJug.jugs[j] += counter;
-                    newJug.jugs[i] -= counter;
-                }
-                else {
-                    counter = newJug.jugs[i];
-                    newJug.jugs[j] += counter;
-                    newJug.jugs[i] -= counter;
-                }
+            else {
+                counter = newJug.jugs[i];
+                newJug.jugs[j] += counter;
+                newJug.jugs[i] -= counter;
             }
-                break;
         }
+        
         return newJug.jugs;
     }
 
