@@ -5,7 +5,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
-        BestFirst s = new BestFirst();
+        // BestFirst s = new BestFirst();
+        AStar s = new AStar();
 
         String limit = sc.nextLine();
         int[] l = Stream.of(limit.split(" "))
@@ -23,13 +24,17 @@ public class Main {
                     .toArray();
 
         int dim = l.length;
-        Iterator<BestFirst.State> it = s.solve(new Jug(j1, l, dim), new Jug(j2, l, dim));
+
+        // Iterator<BestFirst.State> it = s.solve(new Jug(j1, l, dim), new Jug(j2, l, dim));
+        Iterator<AStar.State> it = s.solve(new Jug(j1, l, dim), new Jug(j2, l, dim));
 
         if(it == null)
             System.out.println("no solution was found");
             else {
                 while(it.hasNext()) {
-                    BestFirst.State i = it.next();
+                    // BestFirst.State i = it.next();
+                    AStar.State i = it.next();
+                    
                     // System.out.println(i); This prints each step
                     if (!it.hasNext())
                         System.out.println(String.format("%.0f", i.getG()));

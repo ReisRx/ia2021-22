@@ -21,6 +21,7 @@ class Jug implements Ilayout {
     }
 
     public Jug(Jug b) {
+        this.dim = b.dim;
         this.jugs = new int[dim];
         this.jugsLimit = new int [dim];
         for(int i = 0; i < dim; i++) {
@@ -101,5 +102,16 @@ class Jug implements Ilayout {
     @Override
     public double getG() {
         return 1;
+    }
+
+    @Override
+    public double getH(Ilayout goal) {
+        double result = 0;
+        Jug l = (Jug) goal;
+        for(int i = 0; i < dim; i++) {
+            if(this.jugs[i] != l.jugs[i]) 
+                result++;
+        }
+        return result;
     }
 }
