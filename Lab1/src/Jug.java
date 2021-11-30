@@ -10,7 +10,7 @@ class Jug implements Ilayout {
         this.jugsLimit = new int [dim];
     }
 
-    public Jug(int[] j, int[] limits, int size) {
+    public Jug(int[] j, int[] limits, int size) { // Construtor Jug da Main
         this.dim = size;
         this.jugs = new int[dim];
         this.jugsLimit = new int [dim];
@@ -43,14 +43,14 @@ class Jug implements Ilayout {
     private int[] moveWater(Jug newJug, int i, int j) {
         int counter = 0;
 
-        if(newJug.jugs[j] < this.jugsLimit[j]) {
-            counter = this.jugsLimit[j] - newJug.jugs[j];
-            if(newJug.jugs[i] > counter) {
-                newJug.jugs[j] += counter;
+        if(newJug.jugs[j] < this.jugsLimit[j]) { // compara a ver se é menor que o jugLimit
+            counter = this.jugsLimit[j] - newJug.jugs[j]; // água necessária pra se mover
+            if(newJug.jugs[i] > counter) { // compara água necessária com o que pode levar
+                newJug.jugs[j] += counter; // retira de um e mete no outro
                 newJug.jugs[i] -= counter;
             }
             else {
-                counter = newJug.jugs[i];
+                counter = newJug.jugs[i]; // move tudo para o jug recetor
                 newJug.jugs[j] += counter;
                 newJug.jugs[i] -= counter;
             }
@@ -105,7 +105,7 @@ class Jug implements Ilayout {
     }
 
     @Override
-    public double getH(Ilayout goal) {
+    public double getH(Ilayout goal) { // Compara o atual com o Goal, se for diferente h++
         double result = 0;
         Jug l = (Jug) goal;
         for(int i = 0; i < dim; i++) {

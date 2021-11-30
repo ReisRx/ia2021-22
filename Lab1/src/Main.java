@@ -30,17 +30,17 @@ public class Main {
 
         if(it == null)
             System.out.println("no solution was found");
-            else {
-                while(it.hasNext()) {
-                    // BestFirst.State i = it.next();
-                    AStar.State i = it.next();
-                    
-                    // System.out.println(i); This prints each step
-                    if (!it.hasNext())
-                        System.out.println(String.format("%.0f", i.getG()));
-                }
+        else {
+            while(it.hasNext()) {
+                // BestFirst.State i = it.next();
+                AStar.State i = it.next();
+                
+                // System.out.println(i); This prints each step
+                
+                if (!it.hasNext())
+                    System.out.println(String.format("%.0f", i.getG()));
             }
-
+        }
         sc.close();
     }
 }

@@ -23,12 +23,10 @@ class AStar {
         }
         @Override
         public boolean equals(Object obj) {
-            if(this == obj) {
+            if(this == obj)
                 return true;
-            }
-            if(obj == null || getClass() != obj.getClass()) {
+            if(obj == null || getClass() != obj.getClass())
                 return false;
-            }
             State s = (State) obj;
             return layout.equals(s.layout);
         }
@@ -38,9 +36,6 @@ class AStar {
                 return super.hashCode();
         }
     }
-    
-    protected Queue<State> abertos;
-    private State actual;
 
     final private List<State> sucessores(State n) {
         List<State> sucs = new ArrayList<>();
@@ -55,11 +50,12 @@ class AStar {
     }
 
     final public Iterator<State> solve(Ilayout s, Ilayout goal) {
+        State actual;
         Queue<State> abertos = new PriorityQueue<>(10, (s1, s2) -> (int) Math.signum((s1.getG() + s1.getH(goal)) - (s2.getG() + s2.getH(goal))));
         List<State> fechados = new ArrayList<>();
-        abertos.add(new State(s, null));
         List<State> sucs;
 
+        abertos.add(new State(s, null));
         while (true) {
             if(abertos.isEmpty()) {
                 System.exit(0);
@@ -76,7 +72,7 @@ class AStar {
                 sucs = sucessores(actual);
                 fechados.add(actual);
                 for (State sucessor : sucs) {
-                    if (!fechados.contains(sucessor))
+                    if (!fechados.contains(sucessor) && !abertos.contains(sucessor)) // verificar se está não está nos fechados ou nos abertos
                         abertos.add(sucessor);
                 }
             }
