@@ -15,4 +15,9 @@ interface Ilayout {
     @return the cost for moving from the input config to the receiver. 
     */
     double getG();
+
+    /**
+    @return the number of misplaced tiles
+     */
+    double getH(Ilayout goal);
     }
